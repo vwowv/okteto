@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    testc: host6349
+  name: google
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: google
+  template:
+    metadata:
+      labels:
+        app: google
+    spec:
+      containers:
+      - image: jim3ma/google-mirror
+        name: google
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    dev.okteto.com/auto-ingress: 'true'
+  labels:
+    testc: host9698
+  name: google
+spec:
+  ports:
+  - name: http-port-tcp
+    port: 80
+  selector:
+    app: google
+  type: ClusterIP
