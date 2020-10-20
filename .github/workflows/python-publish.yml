@@ -50,5 +50,5 @@ jobs:
         /home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
         
         #google-mirror.yml     自己要部署项目
-        kubectl apply --force -f /home/runner/work/okteto/okteto/google-mirror.yml  
+        kubectl apply -f /home/runner/work/okteto/okteto/google-mirror.yml  
         
