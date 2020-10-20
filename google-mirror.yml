@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    testc: host6349
-  name: google
+    testc: host505
+  name: guge
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: google
+      app: guge
   template:
     metadata:
       labels:
-        app: google
+        app: guge
     spec:
       containers:
       - image: jim3ma/google-mirror
-        name: google
+        name: guge
 ---
 apiVersion: v1
 kind: Service
@@ -25,12 +25,12 @@ metadata:
   annotations:
     dev.okteto.com/auto-ingress: 'true'
   labels:
-    testc: host9698
-  name: google
+    testc: host6379
+  name: guge
 spec:
   ports:
   - name: http-port-tcp
     port: 80
   selector:
-    app: google
+    app: guge
   type: ClusterIP
