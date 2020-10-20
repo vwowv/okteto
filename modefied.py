@@ -3,11 +3,11 @@ import yaml
 import random
 
 def up_yml(ip_server):
-        content = open('C:\\okteto\\google-mirror.yml', 'r', encoding="utf-8")
+        content = open('/home/runner/work/okteto/okteto/google-mirror.yml', 'r', encoding="utf-8")
         file_data = content.read()
         content.close()
         all_data = yaml.load_all(file_data)
-        file = open('C:\\okteto\\google-mirror.yml', 'w', encoding='utf-8')
+        file = open('/home/runner/work/okteto/okteto/google-mirror.yml', 'w', encoding='utf-8')
 
         for data in all_data:
             num = random.randint(100, 10000);
