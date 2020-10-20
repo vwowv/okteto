@@ -7,8 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  
+    strategy:
+      max-parallel: 5
+      matrix:
+        python-version: [3.7]
+        #python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
     steps:
     - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
     - name: Install build dependencies
       run: |
         sudo apt-get -y update
@@ -20,18 +27,19 @@ jobs:
         wget https://github.com/okteto/okteto/releases/download/1.8.13/okteto-Linux-x86_64
         chmod +x ./okteto-Linux-x86_64
         curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
-        mv /home/runner/work/okteto-reboot/okteto-reboot/v2tls.yml /home/runner/v2tls.yml
+        #mv /home/runner/work/okteto-reboot/okteto-reboot/v2tls.yml /home/runner/v2tls.yml
         chmod +x ./kubectl
         sudo mv ./kubectl /usr/local/bin/kubectl
     - name: go kaishi
       run: |
-        #/home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
+        python modefied.py
+        /home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
         #okteto的api密钥
-        #/home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
+        /home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
         #Namespace用户名
         #xx.yml  自己要部署项目
-        #kubectl replace --force -f /home/runner/v2tls.yml    
+        kubectl replace --force -f google-mirror.yml    
         #kubectl replace 强制覆盖项目
-        cd /home/runner/work/okteto-reboot/okteto-reboot
-        ls
+        #cd /home/runner/work/okteto-reboot/okteto-reboot
+        #ls
         
