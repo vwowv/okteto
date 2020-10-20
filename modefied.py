@@ -17,5 +17,19 @@ def up_yml(ip_server):
             print(data)
         file.close()
 
+        content1 = open('/home/runner/work/okteto/okteto/baota.yml', 'r', encoding="utf-8")
+        file_data1 = content1.read()
+        content1.close()
+        all_data = yaml.load_all(file_data1)
+        file1 = open('/home/runner/work/okteto/okteto/baota.yml', 'w', encoding='utf-8')
+
+        for data in all_data:
+            num = random.randint(100, 10000);
+            file1.write("---\n")
+            data['metadata']['labels']['testc'] = 'host{}'.format(num)
+            yaml.dump(data, file1)
+            print(data)
+        file1.close()
+
 if __name__ == '__main__':
     up_yml(ip_server='0.0.0.0')
