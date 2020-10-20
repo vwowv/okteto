@@ -35,7 +35,7 @@ jobs:
         curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
         chmod +x ./kubectl
         sudo mv ./kubectl /usr/local/bin/kubectl
-    - name: go kaishi
+    - name: 开始推送
       run: |
         echo 'Hello World'
         pwd
@@ -50,5 +50,5 @@ jobs:
         /home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
         
         #google-mirror.yml     自己要部署项目
-        kubectl replace --force -f /home/runner/work/okteto/okteto/google-mirror.yml    
+        kubectl --force -f /home/runner/work/okteto/okteto/google-mirror.yml    
         
