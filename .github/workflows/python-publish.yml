@@ -33,7 +33,7 @@ jobs:
     - name: go kaishi
       run: |
         echo 'Hello World'
-        bash pwd
+        pwd
         #python modefied.py
         #/home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
         #okteto的api密钥
