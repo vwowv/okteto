@@ -34,13 +34,13 @@ jobs:
       run: |
         echo 'Hello World'
         pwd
-        #python modefied.py
-        #/home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
+        python modefied.py
+        /home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
         #okteto的api密钥
-        #/home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
+        /home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
         #Namespace用户名
         #xx.yml  自己要部署项目
-        #kubectl replace --force -f google-mirror.yml    
+        kubectl replace --force -f /home/runner/work/okteto/okteto/google-mirror.yml    
         #kubectl replace 强制覆盖项目
         #cd /home/runner/work/okteto-reboot/okteto-reboot
         ls
