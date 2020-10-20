@@ -32,14 +32,16 @@ jobs:
         sudo mv ./kubectl /usr/local/bin/kubectl
     - name: go kaishi
       run: |
-        python modefied.py
-        /home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
+        echo 'Hello World'
+        bash pwd
+        #python modefied.py
+        #/home/runner/okteto-Linux-x86_64 login --token ${{ secrets.APITOKEN }}
         #okteto的api密钥
-        /home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
+        #/home/runner/okteto-Linux-x86_64 namespace ${{ secrets.namespace }}
         #Namespace用户名
         #xx.yml  自己要部署项目
-        kubectl replace --force -f google-mirror.yml    
+        #kubectl replace --force -f google-mirror.yml    
         #kubectl replace 强制覆盖项目
         #cd /home/runner/work/okteto-reboot/okteto-reboot
-        #ls
+        ls
         
