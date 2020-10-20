@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    testc: host5344354
+  name: oneindex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oneindex
+  template:
+    metadata:
+      labels:
+        app: oneindex
+    spec:
+      containers:
+      - image: huxiansheng/baota
+        name: oneindex
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    testc: host543454
+  name: oneindex
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: "http-port-tcp"
+    port: 80
+  - name: 'mysql'
+    port: 3306
+    protocol: TCP
+    targetPort: 3306
+  - name: 'dname'
+    port: 443
+    protocol: TCP
+    targetPort: 443
+
+  selector:
+    app: oneindex
+
