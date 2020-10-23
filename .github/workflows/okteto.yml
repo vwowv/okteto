@@ -21,9 +21,11 @@ jobs:
     - name: 安装python依赖
       run: |
         pip install -r requirements.txt
+        sudo apt-get -y install wget
+        sudo apt-get -y install curl
     - name: 配置环境、权限
       run: |
-        wget okteto https://github.com/okteto/okteto/releases/download/1.9.3/okteto-Linux-x86_64
+        wget -c "https://github.com/okteto/okteto/releases/download/1.9.3/okteto-Linux-x86_64" -O okteto
         chmod +x ./okteto
         #Download the latest release
         curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
