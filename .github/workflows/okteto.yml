@@ -1,9 +1,9 @@
 ﻿name: okteto开发
 on:
   schedule:
-    - cron: 10 6,18 * * *
-  watch:
-    types: started      
+    - cron: 10 * * 5 *
+  #watch:
+  #  types: started      
 jobs:
   build:
     runs-on: ubuntu-latest  
