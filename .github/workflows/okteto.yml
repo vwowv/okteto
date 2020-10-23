@@ -33,6 +33,7 @@ jobs:
         sudo cp ./kubectl /usr/local/bin/kubectl
     - name: 开始推送
       run: |
+        ls
         echo $GITHUB_WORKSPACE
         #更改yml随机数以方便‘开发’
         python modefied.py
