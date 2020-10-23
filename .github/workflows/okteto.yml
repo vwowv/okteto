@@ -1,0 +1,46 @@
+﻿name: okteto开发
+on:
+  schedule:
+    - cron: 10 6,18 * * *
+  watch:
+    types: started      
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    strategy:
+      max-parallel: 5
+      matrix:
+        python-version: [3.7]
+        #python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: 安装python依赖
+      run: |
+        pip install -r requirements.txt
+    - name: 配置环境、权限
+      run: |
+        wget okteto https://github.com/okteto/okteto/releases/download/1.9.3/okteto-Linux-x86_64
+        chmod +x ./okteto
+        #Download the latest release
+        curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+        chmod +x ./kubectl
+        sudo cp ./kubectl /usr/local/bin/kubectl
+    - name: 开始推送
+      run: |
+        echo $GITHUB_WORKSPACE
+        #更改yml随机数以方便‘开发’
+        python modefied.py
+
+        #okteto的api密钥
+        $GITHUB_WORKSPACE/okteto login --token ${{ secrets.APITOKEN }}
+
+        #Namespace用户名
+        $GITHUB_WORKSPACE/okteto namespace ${{ secrets.namespace }}
+        
+        # baota.yml      推送项目
+        kubectl apply -f baota.yml  
+        
