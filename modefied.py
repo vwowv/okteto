@@ -3,11 +3,11 @@ import yaml
 import random
 
 def up_yml(ip_server):
-        content1 = open('/home/runner/work/oktetodev/oktetodev/baota.yml', 'r', encoding="utf-8")
+        content1 = open('baota.yml', 'r', encoding="utf-8")
         file_data1 = content1.read()
         content1.close()
         all_data = yaml.load_all(file_data1)
-        file1 = open('/home/runner/work/oktetodev/oktetodev/baota.yml', 'w', encoding='utf-8')
+        file1 = open('baota.yml', 'w', encoding='utf-8')
 
         for data in all_data:
             num = random.randint(100, 10000);
