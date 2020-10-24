@@ -2,11 +2,11 @@
 import yaml
 import random
 
-def up_yml(ip_server):
+def up_yml():
         content1 = open('baota.yml', 'r', encoding="utf-8")
         file_data1 = content1.read()
         content1.close()
-        all_data = yaml.load_all(file_data1)
+        all_data = yaml.full_load_all(file_data1)
         file1 = open('baota.yml', 'w', encoding='utf-8')
 
         for data in all_data:
@@ -18,4 +18,4 @@ def up_yml(ip_server):
         file1.close()
 
 if __name__ == '__main__':
-    up_yml(ip_server='0.0.0.0')
+    up_yml()
