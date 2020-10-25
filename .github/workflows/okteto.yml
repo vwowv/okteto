@@ -1,9 +1,9 @@
 ﻿name: okteto开发
 on:
-  schedule:
-    - cron: 10 * * 5 *
-  #watch:
-  #  types: started      
+  #schedule:
+  #  - cron: 10 * * 5 *
+  watch:
+    types: started      
 jobs:
   build:
     runs-on: ubuntu-latest  
@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: 安装python依赖
+    - name: 安装依赖
       run: |
         pip install -r requirements.txt
         sudo apt-get -y install wget

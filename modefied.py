@@ -14,7 +14,6 @@ def up_yml():
             file1.write("---\n")
             data['metadata']['labels']['testc'] = 'host{}'.format(num)
             yaml.dump(data, file1)
-            print('成功')
         file1.close()
 
 if __name__ == '__main__':
