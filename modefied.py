@@ -2,19 +2,19 @@
 import yaml
 import random
 
-def up_yml():
-        content1 = open('baota.yml', 'r', encoding="utf-8")
-        file_data1 = content1.read()
-        content1.close()
-        all_data = yaml.full_load_all(file_data1)
-        file1 = open('baota.yml', 'w', encoding='utf-8')
-
+def change(files):
+        content = open(files, 'r', encoding="utf-8")
+        file_data = content.read()
+        content.close()
+        all_data = yaml.full_load_all(file_data)
+        file = open(files, 'w', encoding='utf-8')   
         for data in all_data:
             num = random.randint(100, 10000);
-            file1.write("---\n")
+            file.write("---\n")
             data['metadata']['labels']['testc'] = 'host{}'.format(num)
-            yaml.dump(data, file1)
-        file1.close()
+            yaml.dump(data, file)
+            print('成功')      
+        file.close()
 
 if __name__ == '__main__':
-    up_yml()
+    change('baota.yml') 
