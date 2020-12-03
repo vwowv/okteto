@@ -15,7 +15,7 @@ okteto定时修改yml文件以保持应用不休眠。
 
 
 ```yaml
-      # 部署到 GitHub Pages
+      # 推送到main假装开发
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
