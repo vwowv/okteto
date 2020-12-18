@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    testc: helloworld
+  name: baota
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: baota
+  template:
+    metadata:
+      labels:
+        app: baota
+    spec:
+      containers:
+      - image: vwowv/baota
+        name: baota
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 2Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    testc: hos253454
+  name: baota
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: 'panel port'
+    port: 80
+    protocol: TCP
+    targetPort: 8888
+  selector:
+    app: baota
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    testc: helloworld
+  name: zfaka
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: 'http-port-tcp'
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: baota
